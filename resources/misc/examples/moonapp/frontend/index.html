@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonApp - El Almanaque de las Fases Lunares</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Fondo animado -->
+        <div class="background-effect"></div>
+        
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">🌙 MOONAPP 🌙</h1>
+            <p class="subtitle">El Almanaque de las Fases Lunares</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Formulario -->
+            <section class="form-section">
+                <div class="form-container">
+                    <h2>Consulta la Luna</h2>
+                    <p class="form-description">Introduce una fecha para descubrir el destino lunar que te aguarda</p>
+                    
+                    <form id="moonForm" class="moon-form">
+                        <div class="form-group">
+                            <label for="dateInput">Selecciona una fecha:</label>
+                            <input 
+                                type="date" 
+                                id="dateInput" 
+                                class="date-input"
+                                required
+                            >
+                            <span class="error-message" id="dateError"></span>
+                        </div>
+
+                        <button type="submit" class="submit-button">
+                            <span class="button-text">Consultar la Luna</span>
+                            <span class="button-glow"></span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Resultado -->
+            <section class="result-section" id="resultSection" style="display: none;">
+                <div class="result-container">
+                    <div class="result-header">
+                        <h3>Resultado de tu Consulta</h3>
+                        <button class="close-button" id="closeButton">×</button>
+                    </div>
+                    
+                    <div class="result-body">
+                        <div class="result-date">
+                            <span class="label">Fecha consultada:</span>
+                            <span class="value" id="consultedDate"></span>
+                        </div>
+
+                        <div class="result-status">
+                            <div id="fullMoonResult" class="status-item">
+                                <!-- Se rellena dinámicamente -->
+                            </div>
+                        </div>
+
+                        <div class="result-next-full-moon" id="nextFullMoonSection" style="display: none;">
+                            <span class="label">Próxima Luna Llena:</span>
+                            <span class="value" id="nextFullMoonDate"></span>
+                            <span class="days-away" id="daysAway"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Consultando los cielos...</p>
+            </div>
+
+            <!-- Error -->
+            <div class="error-box" id="errorBox" style="display: none;">
+                <h3>⚠️ Error en la Consulta</h3>
+                <p id="errorMessage"></p>
+                <button class="dismiss-button" id="dismissError">Cerrar</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Las fases lunares no mienten, pero sí son impredecibles 🌒</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

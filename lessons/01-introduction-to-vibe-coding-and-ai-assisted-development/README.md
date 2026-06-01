@@ -56,6 +56,7 @@ También es útil iterar en pasos pequeños y revisar cada propuesta antes de se
 
 A lo largo del curso profundizaremos en patrones de uso, prompting, contexto, herramientas y gobierno. Esta base inicial sirve para entender que el verdadero cambio no es solo tecnológico, sino metodológico y profesional.
 
+![The Vibe Coding Workflow](Vibe-Coding-Workflow.png)
 
 ## Recursos adicionales
 > **Enlaces externos**: Los enlaces se abren en la misma pestaña. Usa Ctrl+Click (Windows/Linux) o Cmd+Click (Mac) para abrirlos en pestaña nueva.

@@ -1,0 +1,510 @@
+/* ============================================
+   MOONAPP - Estética Frankenstein
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores Frankenstein */
+    --primary-dark: #0a0e27;
+    --secondary-dark: #1a1f3a;
+    --accent-green: #1db954;
+    --accent-purple: #9d4edd;
+    --text-light: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --error-red: #ff6b6b;
+    --success-green: #51cf66;
+    
+    /* Efectos */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.7);
+    --glow: 0 0 20px rgba(157, 78, 221, 0.5);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Background Effect */
+.background-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(29, 185, 84, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Container */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: var(--accent-purple);
+    text-shadow: 0 0 20px rgba(157, 78, 221, 0.8), 
+                 0 0 40px rgba(157, 78, 221, 0.4);
+    margin-bottom: 0.5rem;
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Form Section */
+.form-section {
+    width: 100%;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.form-container {
+    background: rgba(26, 31, 58, 0.8);
+    border: 2px solid var(--accent-purple);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: var(--shadow-lg), var(--glow);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(157, 78, 221, 0.2) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.form-container h2 {
+    font-size: 1.8rem;
+    color: var(--accent-purple);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(157, 78, 221, 0.6);
+}
+
+.form-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.moon-form {
+    position: relative;
+    z-index: 1;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--text-light);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.date-input {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid var(--accent-green);
+    border-radius: 6px;
+    color: var(--text-light);
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+}
+
+.date-input::placeholder {
+    color: var(--text-muted);
+}
+
+.error-message {
+    display: block;
+    color: var(--error-red);
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    min-height: 1.2rem;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-green) 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow), 0 8px 20px rgba(157, 78, 221, 0.6);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.submit-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 3s infinite;
+}
+
+/* Result Section */
+.result-section {
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.result-container {
+    background: rgba(26, 31, 58, 0.8);
+    border: 2px solid var(--accent-green);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(29, 185, 84, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.result-header {
+    background: rgba(29, 185, 84, 0.15);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--accent-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-header h3 {
+    color: var(--accent-green);
+    text-shadow: 0 0 10px rgba(29, 185, 84, 0.6);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--accent-green);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    transform: rotate(90deg);
+}
+
+.result-body {
+    padding: 2rem;
+}
+
+.result-date,
+.result-next-full-moon {
+    margin-bottom: 1.5rem;
+}
+
+.label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 1px;
+}
+
+.value {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--accent-green);
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.status-item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.status-item.full-moon {
+    background: rgba(81, 207, 102, 0.15);
+    border: 1px solid var(--success-green);
+    color: var(--success-green);
+}
+
+.status-item.not-full-moon {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid var(--error-red);
+    color: var(--error-red);
+}
+
+.days-away {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(157, 78, 221, 0.3);
+    border-top: 3px solid var(--accent-purple);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading p {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Error Box */
+.error-box {
+    background: rgba(255, 107, 107, 0.1);
+    border: 2px solid var(--error-red);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.error-box h3 {
+    color: var(--error-red);
+    margin-bottom: 1rem;
+}
+
+.error-box p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.dismiss-button {
+    background: var(--error-red);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.dismiss-button:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(157, 78, 221, 0.3);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(157, 78, 221, 0.8), 
+                     0 0 40px rgba(157, 78, 221, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(157, 78, 221, 1), 
+                     0 0 60px rgba(157, 78, 221, 0.6);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(20px, -20px);
+    }
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 2rem;
+    }
+
+    .title {
+        letter-spacing: 1px;
+    }
+
+    .result-body {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .footer {
+        margin-top: 2rem;
+        font-size: 0.8rem;
+    }
+}

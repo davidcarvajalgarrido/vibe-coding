@@ -1,0 +1,20 @@
+{
+  "name": "moonapp-backend",
+  "version": "1.0.0",
+  "description": "Backend API para MoonApp - Consulta de fases lunares",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["moon", "lunar", "api", "express"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "axios": "^1.4.0",
+    "moment": "^2.29.4"
+  }
+}
