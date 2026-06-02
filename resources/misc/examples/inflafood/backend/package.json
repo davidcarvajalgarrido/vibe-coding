@@ -1,0 +1,17 @@
+{
+  "name": "inflafood-backend",
+  "version": "1.0.0",
+  "description": "API REST para precios de alimentos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["food", "prices", "api"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InflaFood - Precios de Alimentos Saludables</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🍎 InflaFood</h1>
+      <p class="subtitle">Precios de alimentos saludables en tiempo real</p>
+    </header>
+
+    <main>
+      <section class="form-section">
+        <form id="foodForm">
+          <div class="form-group">
+            <label for="foodSelect">Selecciona un alimento:</label>
+            <select id="foodSelect" required>
+              <option value="">-- Elige un alimento --</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit">Consultar Precio</button>
+        </form>
+      </section>
+
+      <section id="resultSection" class="result-section hidden">
+        <div class="card">
+          <h2 id="foodName"></h2>
+          
+          <div class="price-info">
+            <div class="current-price">
+              <span class="label">Precio actual:</span>
+              <span class="price" id="currentPrice"></span>
+            </div>
+
+            <div class="price-comparison">
+              <span class="label">Hace 7 días:</span>
+              <span class="price old-price" id="oldPrice"></span>
+            </div>
+          </div>
+
+          <div id="changeIndicator" class="change-indicator"></div>
+
+          <p class="loading" id="loadingMessage">Cargando...</p>
+          <p class="error" id="errorMessage"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 InflaFood - Alimentos saludables a mejor precio</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
