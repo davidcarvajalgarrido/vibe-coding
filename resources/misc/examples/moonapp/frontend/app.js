@@ -31,10 +31,6 @@ function init() {
     
     // Validación en tiempo real del input de fecha
     dateInput.addEventListener('change', clearDateError);
-    
-    // Establecer fecha máxima como hoy
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.max = today;
 }
 
 /* ============================================
@@ -92,15 +88,6 @@ function validateDate() {
     
     if (!dateValue) {
         showDateError('Por favor, selecciona una fecha');
-        return false;
-    }
-    
-    const selectedDate = new Date(dateValue);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    if (selectedDate > today) {
-        showDateError('No puedes consultar fechas futuras');
         return false;
     }
     

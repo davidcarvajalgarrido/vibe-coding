@@ -108,19 +108,6 @@ function validateDate(dateString) {
         return { valid: false, error: 'Formato de fecha inválido. Usa YYYY-MM-DD' };
     }
     
-    // Verificar que no sea fecha futura
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    if (date > today) {
-        return { valid: false, error: 'No se pueden consultar fechas futuras' };
-    }
-    
-    // Verificar que no sea muy antigua (límite razonable: año 1900)
-    if (date.getFullYear() < 1900) {
-        return { valid: false, error: 'La fecha debe ser posterior a 1900' };
-    }
-    
     return { valid: true };
 }
 
