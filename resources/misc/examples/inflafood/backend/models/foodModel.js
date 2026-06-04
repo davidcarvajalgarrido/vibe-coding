@@ -46,7 +46,8 @@ const getFoodsData = async () => {
     }
   ];
 
-  return foods;
+  // Normalizar IDs como números para garantizar consistencia
+  return foods.map(food => ({ ...food, id: parseInt(food.id) }));
 };
 
 /**
@@ -56,7 +57,8 @@ const getFoodsData = async () => {
  */
 const getFoodById = async (foodId) => {
   const foods = await getFoodsData();
-  return foods.find(food => food.id === parseInt(foodId)) || null;
+  const parsedFoodId = parseInt(foodId);
+  return foods.find(food => food.id === parsedFoodId) || null;
 };
 
 module.exports = {
