@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { getFoodsData, getFoodById } = require('./models/foodModel');
 
 const app = express();
 const PORT = 3001;
@@ -8,53 +9,19 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-// Base de datos simulada con precios
-const foodDatabase = [
-  { 
-    id: 1,
-    nombre: 'Manzana', 
-    precioActual: 1.50, 
-    preciohace7dias: 1.45 
-  },
-  { 
-    id: 2,
-    nombre: 'Pechuga de Pollo', 
-    precioActual: 8.99, 
-    preciohace7dias: 9.50 
-  },
-  { 
-    id: 3,
-    nombre: 'Brócoli', 
-    precioActual: 2.75, 
-    preciohace7dias: 2.60 
-  },
-  { 
-    id: 4,
-    nombre: 'Salmón', 
-    precioActual: 12.99, 
-    preciohace7dias: 12.50 
-  },
-  { 
-    id: 5,
-    nombre: 'Yogurt Natural', 
-    precioActual: 3.20, 
-    preciohace7dias: 3.40 
-  }
-];
-
-// Endpoint para obtener precio
-app.post('/getPrice', (req, res) => {
+// Endpoint to get food price
+app.post('/getPrice', async (req, res) => {
   const { idFood } = req.body;
 
-  // Validar que se envió idFood
+  // Validate that foodId was provided
   if (!idFood) {
     return res.status(400).json({ 
       error: 'idFood es requerido' 
     });
   }
 
-  // Buscar el alimento
-  const food = foodDatabase.find(f => f.id === parseInt(idFood));
+  // Fetch food data from model
+  const food = await getFoodById(idFood);
 
   if (!food) {
     return res.status(404).json({ 
@@ -62,28 +29,29 @@ app.post('/getPrice', (req, res) => {
     });
   }
 
-  // Calcular cambio de precio
-  const cambio = food.precioActual - food.preciohace7dias;
-  const cambioProcentaje = ((cambio / food.preciohace7dias) * 100).toFixed(2);
+  // Calculate price change
+  const priceChange = food.currentPrice - food.priceWeekAgo;
+  const changePercentage = ((priceChange / food.priceWeekAgo) * 100).toFixed(2);
 
   res.json({
-    idFood: food.id,
-    nombre: food.nombre,
-    price: food.precioActual,
-    preciohace7dias: food.preciohace7dias,
-    cambio: parseFloat(cambio.toFixed(2)),
-    cambioProcentaje: parseFloat(cambioProcentaje),
-    subio: cambio > 0
+    foodId: food.id,
+    name: food.name,
+    currentPrice: food.currentPrice,
+    priceWeekAgo: food.priceWeekAgo,
+    priceChange: parseFloat(priceChange.toFixed(2)),
+    changePercentage: parseFloat(changePercentage),
+    increased: priceChange > 0
   });
 });
 
-// Endpoint para obtener lista de alimentos
-app.get('/foods', (req, res) => {
-  const foods = foodDatabase.map(food => ({
+// Endpoint to get foods list
+app.get('/foods', async (req, res) => {
+  const foods = await getFoodsData();
+  const foodsList = foods.map(food => ({
     id: food.id,
-    nombre: food.nombre
+    name: food.name
   }));
-  res.json(foods);
+  res.json(foodsList);
 });
 
 app.listen(PORT, () => {
